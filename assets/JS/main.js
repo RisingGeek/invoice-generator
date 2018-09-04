@@ -20,4 +20,6 @@ function init() {
             preview.src="";
         }
     });
+
+    addRow();
 }

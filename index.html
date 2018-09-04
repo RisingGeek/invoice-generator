@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="assets/stylesheets/main.css">
     <script defer src="assets/JS/main.js"></script>
     <script defer src="assets/JS/PDF.js"></script>
-    <script defer src="assets/JS/lineItem.js"></script>
+    <script defer src="assets/JS/addLineItem.js"></script>
+    <script defer src="assets/JS/remLineItem.js"></script>
 </head>
 <body>
     <div class="container main">
@@ -61,7 +62,7 @@
             </div>
             <div id="add">
                 <div class="row">
-                    <div class="col-sm-6 text-center">
+                    <div class="col-sm-5 text-center">
                         <h5>Item</h5>
                     </div>
                     <div class="col-sm-2 text-center">
@@ -70,32 +71,13 @@
                     <div class="col-sm-2 text-center">
                         <h5>Rate</h5>
                     </div>
-                    <div class="col-sm-2text-center">
+                    <div class="col-sm-2 text-center">
                         <h5>Amount</h5>
                     </div>
+                    <div class="col-sm-1"></div>
                 </div>
-                <div class="row">
-                        <div class="col-sm-6">
-                            <input type="text" name="desc" class="form-control" placeholder="Description of service or product">
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="qty" class="form-control" value="1">
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">$</span>
-                                </div>
-                                <input type="text" class="form-control" value="0">
-                            </div>
-                        </div>
-                        <div class="col-sm-2 text-center">
-                            <p>$ 0</p>
-                        </div>
-                    </div>
             </div>
             <button class="btn btn-primary lineItem"><span class="fa fa-plus"></span> Line Item</button>
-    </div>
     <div class="container">
         <button class="btn" id="download">Download Invoice</button>
     </div>
