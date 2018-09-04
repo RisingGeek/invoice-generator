@@ -1,6 +1,12 @@
 .main {
     margin-top: 3%;
 }
-#dateShow, #termsShow, #dueShow, #balanceShow {
+#dateShow, #termsShow, #dueShow, #balanceShow, #toShow {
     border: none;
+}
+#logo {
+    visibility: hidden;
+}
+#log {
+    padding: 5%;
 }

@@ -1,0 +1,21 @@
+document.querySelector('#download').addEventListener('click', function() {
+    var doc= new jsPDF();
+    doc.text($('#invoice').text(),100,10,'center');
+    doc.setFontType("bold");
+    doc.text($('#from').val(),10,80);
+    doc.setFontType("normal");
+    doc.text($('#toShow').val(),10,90);
+    doc.setFontType("bold");
+    doc.text($('#to').val(),10,100);
+    doc.setFontType("normal");
+    doc.text($('#dateShow').val()+':',90,75);
+    doc.text($('#date').val(),130,75);
+    doc.text($('#termsShow').val()+':',90,85);
+    doc.text($('#terms').val(),130,85);
+    doc.text($('#dueShow').val()+':',90,95);
+    doc.text($('#due').val(),130,95);
+    doc.setFontType("bold");
+    doc.text($('#balanceShow').val(),90,105);
+    doc.text($('#balanceDue').val(),130,105);
+    doc.save('invoice.pdf');
+});

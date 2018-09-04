@@ -8,7 +8,10 @@ function init() {
         var reader = new FileReader();
 
         reader.onloadend = function() {
+            var preview = document.createElement('img');
+            document.querySelector('#log').appendChild(preview);
             preview.src=reader.result;
+            document.querySelector('#hide').style.display='none';
         }
         if(file) {
             reader.readAsDataURL(file);
