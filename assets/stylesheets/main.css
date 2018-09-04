@@ -10,3 +10,18 @@
 #log {
     padding: 5%;
 }
+.lineItem {
+    margin: 1% 0%;
+}
+.margin {
+    margin: 1% 0%;
+}
+.marginQuantity {
+    margin: 3% 0%;
+}
+.marginP {
+    margin: 19% 0%;
+}
+.col-sm-2 p {
+    vertical-align: middle;
+}
