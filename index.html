@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <script defer src="assets/JS/main.js"></script>
+    <script defer src="assets/JS/PDF.js"></script>
+</head>
+<body>
+    <div class="container main">
+        <h2 class="text-center">INVOICE</h2>
+        <div class="row">
+            <div class="col-sm-5">
+                    <form>
+                        <div class="form-group">
+                            <label for="logo">Add Your Logo</label>
+                            <input type="file" class="form-control-file" id="logo">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="from" placeholder="Who is this invoice from?(required)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="to">Bill To</label>
+                            <input type="text" class="form-control" id="to" placeholder="Who is this invoice to?(required)" required>
+                        </div>
+                    <img src="" alt="" id="preview">
+                    </form>
+            </div>
+            <div class="col-sm-5 offset-sm-2">
+                <form>
+                    <div class="form-group">
+                        <input type="text" value="Date" id="dateShow">
+                        <input type="date" id="date">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" value="Payment Terms" id="termsShow">
+                        <input type="text" id="terms">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" value="Due Date" id="dueShow">
+                        <input type="text" id="due">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" value="Balance Due" id="balanceShow">
+                        <span id="balanceDue"></span>
+                    </div>
+                </form>
+            </div>
+            </div>
+    </div>
+    <div class="container">
+        <button class="btn" id="download">Download Invoice</button>
+    </div>
+</body>
+</html>
