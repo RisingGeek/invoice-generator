@@ -23,3 +23,11 @@ function subtotal(sum) {
 function getDiscount(sum) {
     return Number(document.querySelector('#discountPercent').value)/100*sum;
 }
+
+function updateAll() {
+    let sum = updateBalanceDue();
+    let discount = getDiscount(sum);
+    let shipping = Number(document.querySelector('#shippingCharges').value);
+    updateDue(sum-discount+shipping+Number(document.querySelector('#taxPercent').value)/100*(sum-discount));
+    return sum;
+}

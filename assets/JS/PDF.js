@@ -1,30 +1,97 @@
 document.querySelector('#download').addEventListener('click', function() {
     var doc= new jsPDF();
-    doc.text($('#invoice').text(),100,10,'center');
+    doc.setFontSize(25);
     doc.setFontType("bold");
+    doc.text($('#invoice').text(),100,10,'center');
+    doc.setFontSize(15);
     doc.text($('#from').val(),10,80);
     doc.setFontType("normal");
     doc.text($('#toShow').val(),10,90);
     doc.setFontType("bold");
     doc.text($('#to').val(),10,100);
     doc.setFontType("normal");
-    doc.text($('#dateShow').val()+':',120,75);
-    doc.text($('#date').val(),150,75);
-    doc.text($('#dueShow').val()+':',120,85);
-    doc.text($('#due').val(),150,85);
+    doc.text($('#dateShow').val()+':',150,50,'right');
+    doc.text($('#date').val(),160,50);
+    doc.text($('#dueShow').val()+':',150,60,'right');
+    doc.text($('#due').val(),160,60);
     doc.setFontType("bold");
-    doc.text($('#balanceShow').val()+':',120,95);
-    doc.text($('#balanceDue').text(),160,95);
+    doc.setFillColor(192,192,192);
+    doc.rect(110,63,85,10,"F");
+    doc.text($('#balanceShow').val()+':',150,70,'right');
+    doc.text($('#balanceDue').text(),160,70);
+
+    doc.setFillColor(24,24,24);
+    doc.rect(5,107,190,10,"F");
+    doc.setTextColor(255,255,255);
     doc.text($('#i').text(),10,115);
     doc.text($('#q').text(),100,115);
-    doc.text($('#r').text(),140,115);
+    doc.text($('#r').text(),143,115);
     doc.text($('#a').text(),170,115);
 
-    /*let quantity = document.querySelector('#add').querySelectorAll('.quantity');
-    let rate = document.querySelector('#add').querySelectorAll('.rate');
-    let amount = document.querySelector('#add').querySelectorAll('.Amount');
+    doc.setFontType("normal");
+    doc.setTextColor(0,0,0);
+    let description = $('#add .description');
+    let quantity = $('#add .quantity');
+    let rate = $('#add .rate');
+    let amount = $('#add .Amount');
+    var nextY=130;
     for(let i = 0; i < quantity.length; i++) {
-        doc.text()
-    }*/
+        doc.text(description.eq(i).val(),10,nextY);
+        doc.text(quantity.eq(i).val(),110,nextY,'center');
+        doc.text(rate.eq(i).val(),150,nextY,'center');
+        doc.text(amount.eq(i).text(),180,nextY,'center');
+        nextY+=10;
+    }
+    nextY+=10;
+    doc.text($('#subtotal').val()+':',160,nextY,'right');
+    doc.text($('#subtotalPrice').text(),170,nextY);
+    var discount = getDiscount(Number($('#subtotalPrice').text().replace(/[^0-9\.]+/g,""))).toFixed(2);
+    if(discount && discount!=0) {
+        nextY+=10;
+        doc.text($('#discount').val()+'('+$('#discountPercent').val()+'%):',160,nextY,'right');
+        doc.text('$ '+discount,170,nextY);
+    }
+    var price = $('#subtotalPrice').text().replace(/[^0-9\.]/g,"");
+    var tax = Number($('#taxPercent').val())/100*(Number(price)-Number(discount));
+    if(tax && tax!=0) {
+        nextY+=10;
+        doc.text($('#tax').val()+'('+$('#taxPercent').val()+'%):',160,nextY,'right');
+        doc.text('$ '+tax,170,nextY);
+    }
+    var shipping = $('#shippingCharges').val();
+    if(shipping && shipping!=0) {
+        nextY+=10;
+        doc.text($('#shipping').val()+':',160,nextY,'right');
+        doc.text('$'+$('#shippingCharges').val(),170,nextY);
+    }
+    nextY+=10;
+    doc.text($('#total').val()+':',160,nextY,'right');
+    doc.text($('#totalAmount').text(),170,nextY);
+    var amt=$('#amountPaid').val();
+    if(amt && amt!=0) {
+        nextY+=10;
+        doc.text($('#amountp').val()+':',160,nextY,'right');
+        doc.text('$'+amt,170,nextY);
+    }
+    if($('#someNotes').val()) {
+        nextY+=20;
+        doc.text($('#notes').val()+':',10,nextY);
+        nextY+=10;
+        doc.text($('#someNotes').val(),10,nextY);
+    }
+    if($('#someTerms').val()) {
+        nextY+=10;
+        doc.text($('#terms').val()+':',10,nextY);
+        nextY+=10;
+        doc.text($('#someTerms').val(),10,nextY);
+    }
+
+    function convertImage(){
+        var imgData = document.querySelector('img');
+        if(!imgData)
+            return;
+        doc.addImage(imgData.src, 'JPEG', 20, 20, 60, 50);
+    }
+    convertImage();
     doc.save('invoice.pdf');
 });
