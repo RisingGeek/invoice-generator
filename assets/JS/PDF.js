@@ -8,14 +8,23 @@ document.querySelector('#download').addEventListener('click', function() {
     doc.setFontType("bold");
     doc.text($('#to').val(),10,100);
     doc.setFontType("normal");
-    doc.text($('#dateShow').val()+':',90,75);
-    doc.text($('#date').val(),130,75);
-    doc.text($('#termsShow').val()+':',90,85);
-    doc.text($('#terms').val(),130,85);
-    doc.text($('#dueShow').val()+':',90,95);
-    doc.text($('#due').val(),130,95);
+    doc.text($('#dateShow').val()+':',120,75);
+    doc.text($('#date').val(),150,75);
+    doc.text($('#dueShow').val()+':',120,85);
+    doc.text($('#due').val(),150,85);
     doc.setFontType("bold");
-    doc.text($('#balanceShow').val(),90,105);
-    doc.text($('#balanceDue').val(),130,105);
+    doc.text($('#balanceShow').val()+':',120,95);
+    doc.text($('#balanceDue').text(),160,95);
+    doc.text($('#i').text(),10,115);
+    doc.text($('#q').text(),100,115);
+    doc.text($('#r').text(),140,115);
+    doc.text($('#a').text(),170,115);
+
+    /*let quantity = document.querySelector('#add').querySelectorAll('.quantity');
+    let rate = document.querySelector('#add').querySelectorAll('.rate');
+    let amount = document.querySelector('#add').querySelectorAll('.Amount');
+    for(let i = 0; i < quantity.length; i++) {
+        doc.text()
+    }*/
     doc.save('invoice.pdf');
 });

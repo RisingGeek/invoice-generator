@@ -22,4 +22,11 @@ function init() {
     });
 
     addRow();
+
+    document.querySelector('#balanceDue').innerHTML='$ 0';
+    document.querySelector('#balanceDue').style.fontWeight='bold';
+    document.querySelector('#balanceShow').style.fontWeight='bold';
+    document.querySelector('#subtotalPrice').innerHTML='$ 0';
+    document.querySelector('#taxPercent').innerHTML='0';
+    document.querySelector('#totalAmount').innerHTML='$ 0';
 }

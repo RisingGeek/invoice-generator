@@ -25,11 +25,13 @@ function addRow() {
     let col1 = document.createElement('div');
     col1.classList.add('col-sm-1');
     let button = document.createElement('button');
+    button.classList.add('btn');
+    button.classList.add('btn-danger');
     button.setAttribute('data-row','deleteAfter');
     button.addEventListener('click',function() {
         deleteLineItem(row);
     });
-    button.innerHTML='x';
+    button.innerHTML='&times';
     col1.appendChild(button);
     row.appendChild(col1);
 
@@ -43,7 +45,15 @@ function addRow() {
     quantity.type="text";
     quantity.value=1;
     quantity.classList.add('form-control');
+    quantity.classList.add('quantity');
     col21.appendChild(quantity);
+    quantity.addEventListener('keyup',function() {
+        let sum = updateBalanceDue();
+        let discount = getDiscount(sum);
+        let shipping = Number(document.querySelector('#shippingCharges').value);
+        updateDue(sum-discount+shipping+Number(document.querySelector('#taxPercent').value)/100*(sum-discount));
+        subtotal(sum);
+    });
 
     let inputGroup = document.createElement('div');
     inputGroup.classList.add('input-group');
@@ -58,10 +68,47 @@ function addRow() {
     let rate = document.createElement('input');
     rate.type="text";
     rate.classList.add('form-control');
+    rate.classList.add('rate');
     rate.value=0;
     inputGroup.appendChild(rate);
+    rate.addEventListener('keyup',function() {
+        let sum = updateBalanceDue();
+        let discount = getDiscount(sum);
+        let shipping = Number(document.querySelector('#shippingCharges').value);
+        updateDue(sum-discount+shipping+Number(document.querySelector('#taxPercent').value)/100*(sum-discount));
+        subtotal(sum);
+    });
 
     let amount = document.createElement('p');
     amount.innerHTML='$ 0';
+    amount.classList.add('Amount');
     col23.appendChild(amount);
 }
+
+document.querySelector('#taxPercent').addEventListener('keyup', function() {
+    let sum = updateBalanceDue();
+    let discount = getDiscount(sum);
+    let shipping = Number(document.querySelector('#shippingCharges').value);
+    updateDue(sum-discount+shipping+Number(this.value)/100*(sum-discount));
+});
+
+document.querySelector('#discountPercent').addEventListener('keyup', function() {
+    let sum = updateBalanceDue();
+    let discount = getDiscount(sum);
+    let shipping = Number(document.querySelector('#shippingCharges').value);
+    updateDue(sum-discount+shipping+Number(document.querySelector('#taxPercent').value)/100*(sum-discount));
+});
+
+document.querySelector('#shippingCharges').addEventListener('keyup', function() {
+    let sum = updateBalanceDue();
+    let discount = getDiscount(sum);
+    let shipping = Number(document.querySelector('#shippingCharges').value);
+    updateDue(sum-discount+shipping+Number(document.querySelector('#taxPercent').value)/100*(sum-discount));
+});
+
+document.querySelector('#amountPaid').addEventListener('keyup', function() {
+    let sum = updateBalanceDue();
+    let discount = getDiscount(sum);
+    let shipping = Number(document.querySelector('#shippingCharges').value);
+    updateDue(sum-discount+shipping+Number(document.querySelector('#taxPercent').value)/100*(sum-discount));
+});

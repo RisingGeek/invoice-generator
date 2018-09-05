@@ -1,27 +1,25 @@
 .main {
     margin-top: 3%;
 }
-#dateShow, #termsShow, #dueShow, #balanceShow, #toShow {
+#dateShow, #dueShow, #balanceShow, #toShow {
+    border: none;
+}
+#subtotal, #tax, #discount, #shipping, #amountp, #total, #notes, #terms {
     border: none;
 }
 #logo {
     visibility: hidden;
 }
-#log {
+.jumbotron {
     padding: 5%;
 }
 .lineItem {
     margin: 1% 0%;
 }
-.margin {
-    margin: 1% 0%;
-}
-.marginQuantity {
-    margin: 3% 0%;
-}
-.marginP {
-    margin: 19% 0%;
-}
 .col-sm-2 p {
     vertical-align: middle;
+}
+#final {
+    float: right;
+    margin: 5% 0%;
 }

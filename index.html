@@ -17,6 +17,7 @@
     <script defer src="assets/JS/PDF.js"></script>
     <script defer src="assets/JS/addLineItem.js"></script>
     <script defer src="assets/JS/remLineItem.js"></script>
+    <script defer src="assets/JS/updateBalance.js"></script>
 </head>
 <body>
     <div class="container main">
@@ -31,11 +32,11 @@
                             <input type="file" class="form-control-file" id="logo">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="from" class="form-control" id="from" placeholder="Who is this invoice from?(required)" required>
+                            <input type="text" name="from" class="form-control" id="from" placeholder="Who is this invoice from?">
                         </div>
                         <div class="form-group">
                             <input type="text"id="toShow" value="Bill To:"> 
-                            <input type="text" name="to" class="form-control" id="to" placeholder="Who is this invoice to?(required)" required>
+                            <input type="text" name="to" class="form-control" id="to" placeholder="Who is this invoice to?(required)">
                         </div>
                     </form>
             </div>
@@ -46,14 +47,10 @@
                         <input type="date" name="date" id="date">
                     </div>
                     <div class="form-group">
-                        <input type="text" value="Payment Terms" id="termsShow">
-                        <input type="text" name="terms" id="terms">
-                    </div>
-                    <div class="form-group">
                         <input type="text" value="Due Date" id="dueShow">
                         <input type="text" name="dueDate" id="due">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group jumbotron">
                         <input type="text" value="Balance Due" id="balanceShow">
                         <span id="balanceDue"></span>
                     </div>
@@ -63,23 +60,60 @@
             <div id="add">
                 <div class="row">
                     <div class="col-sm-5 text-center">
-                        <h5>Item</h5>
+                        <h5 contenteditable="true" id="i">Item</h5>
                     </div>
                     <div class="col-sm-2 text-center">
-                        <h5>Quantity</h5>
+                        <h5 contenteditable="true" id="q">Quantity</h5>
                     </div>
                     <div class="col-sm-2 text-center">
-                        <h5>Rate</h5>
+                        <h5 contenteditable="true" id="r">Rate</h5>
                     </div>
                     <div class="col-sm-2 text-center">
-                        <h5>Amount</h5>
+                        <h5 contenteditable="true" id="a">Amount</h5>
                     </div>
                     <div class="col-sm-1"></div>
                 </div>
             </div>
             <button class="btn btn-primary lineItem"><span class="fa fa-plus"></span> Line Item</button>
-    <div class="container">
-        <button class="btn" id="download">Download Invoice</button>
+            <form id="final">
+                <div class="form-group">
+                    <input type="text" value="Subtotal" id="subtotal">
+                    <span id="subtotalPrice"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" value="Discount Percentage" id="discount">
+                    <input type="text" id="discountPercent" value="0">
+                </div>
+                <div class="form-group">
+                    <input type="text" value="Tax Percentage" id="tax">
+                    <input type="text" id="taxPercent" value="0">
+                </div>
+                <div class="form-group">
+                    <input type="text" value="Shipping" id="shipping">
+                    <input type="text" id="shippingCharges" value="0">
+                </div>
+                <div class="form-group">
+                    <input type="text" value="Total" id="total">
+                    <span id="totalAmount"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" value="Amount Paid" id="amountp">
+                    <input type="text" id="amountPaid" value="0">
+                </div>
+            </form>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" value="Notes" id="notes">
+                    <input type="text" class="form-control" id="someNotes" placeholder="any relevant information">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" value="Terms" id="terms">
+                    <input type="text" class="form-control" id="someTerms" placeholder="Terms and Conditions">
+                </div>
+            </form>
+    </div>
+    <div class="container download">
+        <button class="btn btn-primary" id="download"><span class="fa fa-download"></span> Download Invoice</button>
     </div>
 </body>
 </html>
