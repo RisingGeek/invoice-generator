@@ -1,6 +1,10 @@
 document.querySelector('#download').addEventListener('click', function() {
     var doc= new jsPDF();
 
+    var currency = document.querySelector('#currencyPicker').classList[1];
+    var currencyPicker = document.querySelector('#currencyPicker').value;
+    if(currency.search('US')!=-1)
+        currency = currencyPicker;
     doc.setFontSize(25);
     doc.setFontType("bold");
     doc.text($('#invoice').text(),100,10,'center'); //invoice heading
@@ -22,15 +26,15 @@ document.querySelector('#download').addEventListener('click', function() {
     doc.setFillColor(192,192,192);
     doc.rect(110,63,85,10,"F");
     doc.text($('#balanceShow').val()+':',150,70,'right');
-    doc.text($('#balanceDue').text(),160,70);  //balance due
+    doc.text(currency+' '+$('#balanceDue').text().replace(/[^0-9\.]/g,""),160,70);  //balance due
 
     doc.setFillColor(24,24,24);
     doc.rect(5,107,190,10,"F");
     doc.setTextColor(255,255,255);
     doc.text($('#i').text(),10,115);
-    doc.text($('#q').text(),100,115);
-    doc.text($('#r').text(),143,115);
-    doc.text($('#a').text(),170,115);
+    doc.text($('#q').text(),90,115);
+    doc.text($('#r').text(),123,115);
+    doc.text($('#a').text(),160,115);
 
     doc.setFontType("normal");
     doc.setTextColor(0,0,0);
@@ -41,46 +45,46 @@ document.querySelector('#download').addEventListener('click', function() {
     var nextY=130;
     for(let i = 0; i < quantity.length; i++) {
         doc.text(description.eq(i).val(),10,nextY);  //description
-        doc.text(quantity.eq(i).val(),110,nextY,'center');  //quantity
-        doc.text(rate.eq(i).val(),150,nextY,'center');  //rate
-        doc.text(amount.eq(i).text(),180,nextY,'center');  //amount
+        doc.text(quantity.eq(i).val(),100,nextY,'center');  //quantity
+        doc.text(currency+rate.eq(i).val().replace(/[^0-9\.]/g,""),130,nextY,'center');  //rate
+        doc.text(currency+' '+amount.eq(i).text().replace(/[^0-9\.]/g,""),170,nextY,'center');  //amount
         nextY+=10;
     }
 
     nextY+=10;
     doc.text($('#subtotal').val()+':',160,nextY,'right');
-    doc.text($('#subtotalPrice').text(),170,nextY); //subtotal price
+    doc.text(currency+' '+$('#subtotalPrice').text().replace(/[^0-9\.]/g,""),170,nextY); //subtotal price
     var discount = getDiscount(Number($('#subtotalPrice').text().replace(/[^0-9\.]+/g,""))).toFixed(2);
     if(discount && discount!=0) {
         nextY+=10;
         doc.text($('#discount').val()+'('+$('#discountPercent').val()+'%):',160,nextY,'right');
-        doc.text('$ '+discount,170,nextY); //discount
+        doc.text(currency+' '+discount,170,nextY); //discount
     }
 
     var price = $('#subtotalPrice').text().replace(/[^0-9\.]/g,"");
-    var tax = Number($('#taxPercent').val())/100*(Number(price)-Number(discount));
+    var tax = (Number($('#taxPercent').val())/100*(Number(price)-Number(discount))).toFixed(2);
     if(tax && tax!=0) {
         nextY+=10;
         doc.text($('#tax').val()+'('+$('#taxPercent').val()+'%):',160,nextY,'right');
-        doc.text('$ '+tax,170,nextY);  //tax
+        doc.text(currency+' '+tax,170,nextY);  //tax
     }
 
     var shipping = $('#shippingCharges').val();
     if(shipping && shipping!=0) {
         nextY+=10;
         doc.text($('#shipping').val()+':',160,nextY,'right');
-        doc.text('$ '+$('#shippingCharges').val(),170,nextY);  //shipping
+        doc.text(currency+' '+$('#shippingCharges').val(),170,nextY);  //shipping
     }
     nextY+=10;
 
     doc.text($('#total').val()+':',160,nextY,'right');
-    doc.text($('#totalAmount').text(),170,nextY); //total amount
+    doc.text(currency+' '+$('#totalAmount').text().replace(/[^0-9\.]/g,""),170,nextY); //total amount
 
     var amt=$('#amountPaid').val();
     if(amt && amt!=0) {
         nextY+=10;
         doc.text($('#amountp').val()+':',160,nextY,'right');
-        doc.text('$ '+amt,170,nextY);  //amount paid
+        doc.text(currency+' '+amt,170,nextY);  //amount paid
     }
 
     if($('#someNotes').val()) {

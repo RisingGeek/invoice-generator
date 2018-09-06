@@ -65,7 +65,10 @@ function addRow() {
     span.classList.add('input-group-text');
     inputGroupPrepend.appendChild(span);
     span.classList.add('curr');
-    span.innerHTML="$";
+    if(!document.querySelector('#currencyPicker').value)
+        span.innerHTML="$";
+    else
+        span.innerHTML=document.querySelector('#currencyPicker').value;
     let rate = document.createElement('input');
     rate.type="text";
     rate.classList.add('form-control');
@@ -76,7 +79,10 @@ function addRow() {
 
     //Creates amount paragraph
     let amount = document.createElement('p');
-    amount.innerHTML='$ 0';
+    if(!document.querySelector('#currencyPicker').value)
+        amount.innerHTML='$ 0';
+    else
+        amount.innerHTML=document.querySelector('#currencyPicker').value+' 0';
     amount.classList.add('Amount');
     col23.appendChild(amount);
 }
