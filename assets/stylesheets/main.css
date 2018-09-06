@@ -4,7 +4,7 @@
 #dateShow, #dueShow, #balanceShow, #toShow {
     border: none;
 }
-#subtotal, #tax, #discount, #shipping, #amountp, #total, #notes, #terms {
+#subtotal, #tax, #discount, #shipping, #amountp, #total, #notes, #terms, #file {
     border: none;
 }
 #logo {
@@ -22,4 +22,7 @@
 #final {
     float: right;
     margin: 5% 0%;
+}
+#download {
+    margin-bottom: 5%;
 }

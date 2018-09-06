@@ -1,3 +1,4 @@
+/*Deletes line-item*/
 function deleteLineItem(row) {
     document.querySelector('#add').removeChild(row);
     let sum = updateBalanceDue();
